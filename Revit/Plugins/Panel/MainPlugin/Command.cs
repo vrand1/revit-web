@@ -18,7 +18,7 @@ namespace Plugins.Panel.MainPlugin
             if (_window == null || !_window.IsLoaded)
             {
                 var viewModel = new MainViewModel();
-                _window = new WebView(viewModel, "https://google.com");
+                _window = new WebView(viewModel, "localhost:3000/main");
                 
                 var helloWorldModel = new Model();
                 helloWorldModel.Initialize(commandData.Application);

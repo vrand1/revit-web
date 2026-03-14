@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Core.Contracts;
+using Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,6 +14,10 @@ namespace WebBridge.ViewModel
 
         public void RegisterModel(string name, IRevitPluginModel model)
         {
+            model.OnMessageReady += (msg) =>
+            {
+                SendToWeb("toast", msg);
+            };
             if (!_models.ContainsKey(name))
             {
                 _models.Add(name, model);

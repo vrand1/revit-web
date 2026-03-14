@@ -1,11 +1,14 @@
-﻿using Autodesk.Revit.UI;
+﻿using System;
+using Autodesk.Revit.UI;
 using Core.Contracts;
 using Core.Models;
+using WebBridge.ViewModel;
 
 namespace Plugins.Panel.MainPlugin
 {
     public class Model : IRevitPluginModel, IRevitInitializable
     {
+        public event Action<MessageToWeb> OnMessageReady;
         private UIApplication _uiApp;
         private ExternalEvent _externalEvent;
         
@@ -22,6 +25,9 @@ namespace Plugins.Panel.MainPlugin
         public void Execute()
         {
             _externalEvent?.Raise();
+
+            var msg = new MessageToWeb("Плагин выполнен", "Проблем не было 💩");
+            OnMessageReady?.Invoke(msg);
         }
     }
 }

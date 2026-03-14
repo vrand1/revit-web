@@ -43,6 +43,7 @@
         <Compile Include="Contracts\IPayload.cs" />
         <Compile Include="Contracts\IRevitPluginModel.cs" />
         <Compile Include="Models\BasePayload.cs" />
+        <Compile Include="Models\MessageToWeb.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>

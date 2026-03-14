@@ -1,10 +1,14 @@
-﻿namespace Core.Contracts
+﻿using System;
+using Core.Models;
+
+namespace Core.Contracts
 {
     /// <summary>
     /// Interface of plugin model
     /// </summary>
     public interface IRevitPluginModel
     {
+        public event Action<MessageToWeb> OnMessageReady;
         public IPayload Payload { get; set; }
         
         /// <summary>
