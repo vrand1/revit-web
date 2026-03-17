@@ -30,6 +30,11 @@ public class WindowManager
                 Owner = Process.GetCurrentProcess().MainWindowHandle
             };
 
+            _window.Closed += (sender, args) =>
+            {
+                _window = null;
+            };
+
             _window.Show();
         }
         else

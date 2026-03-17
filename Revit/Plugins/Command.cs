@@ -23,7 +23,11 @@ public class Command : ExternalCommand
 
     public override void Execute()
     {
+#if DEBUG
+        _serviceProvider = BuildDi();
+#else
         _serviceProvider ??= BuildDi();
+#endif
         
         _serviceProvider.GetRequiredService<AsyncEventHandler>();
         
@@ -31,6 +35,8 @@ public class Command : ExternalCommand
         windowManager.ShowOrActivate();
     }
 
+    // Попробовать сделать микросервис
+    
     private IServiceProvider BuildDi()
     {
         var services = new ServiceCollection();

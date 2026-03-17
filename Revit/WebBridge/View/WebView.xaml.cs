@@ -42,5 +42,11 @@ namespace WebBridge.View
                 }
             };
         }
+        
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            webView?.Dispose(); 
+        }
     }
 }
