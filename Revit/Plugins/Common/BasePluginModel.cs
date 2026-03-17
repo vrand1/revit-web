@@ -5,7 +5,7 @@ using Core.Contracts;
 using Core.Models;
 using Nice3point.Revit.Toolkit.External.Handlers;
 
-namespace Plugins;
+namespace Plugins.Common;
 
 public abstract class BasePluginModel : IRevitPluginModel
 {

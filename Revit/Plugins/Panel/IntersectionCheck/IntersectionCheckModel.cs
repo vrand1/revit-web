@@ -6,6 +6,7 @@ using Autodesk.Revit.UI;
 using Core.Contracts;
 using Core.Models;
 using Nice3point.Revit.Toolkit.External.Handlers;
+using Plugins.Common;
 using Plugins.Panel.WallCheck;
 
 namespace Plugins.Panel.IntersectionCheck;
@@ -22,8 +23,7 @@ public class IntersectionCheckModel : BasePluginModel
         {
             viewElements = WallCheckEventHandler.GetWallsFromActiveView(app);
         });
-        
-        SendToast("Сеть", "Отправляем данные в Бекенд");
+        SendToast("Сеть", viewElements[0].LevelId.ToString());
         await Task.Delay(2000);
         
 
@@ -37,11 +37,5 @@ public class IntersectionCheckModel : BasePluginModel
         });
 
         SendToast("Готово", "Модель успешно обновлена!");
-    }
-
-    private async Task<string> SendToFastApiAsync(object data)
-    {
-        await Task.Delay(2000);
-        return "Success";
     }
 }
