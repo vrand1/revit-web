@@ -78,12 +78,21 @@
     <Target Name="AfterBuild">
         <PropertyGroup>
             <RevitManifestFolder>$(APPDATA)\Autodesk\Revit\Addins\2021</RevitManifestFolder>
-
-            <RevitPluginFolder>$(RevitManifestFolder)\MySuperPlugin</RevitPluginFolder>
+            <RevitPluginFolder>$(RevitManifestFolder)\VxllPlugins</RevitPluginFolder>
         </PropertyGroup>
 
-        <Exec Command="copy &quot;$(ProjectDir)Plugins.addin&quot; &quot;$(RevitManifestFolder)\Plugins.addin&quot; /Y" />
+        <Exec Command="copy &quot;$(ProjectDir)Plugins.addin&quot; &quot;$(RevitManifestFolder)\Plugins.addin&quot; /Y"
+              ContinueOnError="WarnAndContinue"
+              Condition="'$(Configuration)' == 'Debug'" />
 
-        <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(RevitPluginFolder)\&quot; /Y /I /E" />
+        <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(RevitPluginFolder)\&quot; /Y /I /E"
+              ContinueOnError="WarnAndContinue"
+              Condition="'$(Configuration)' == 'Debug'" />
+
+        <Exec Command="copy &quot;$(ProjectDir)Plugins.addin&quot; &quot;$(RevitManifestFolder)\Plugins.addin&quot; /Y"
+              Condition="'$(Configuration)' == 'Release'" />
+
+        <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(RevitPluginFolder)\&quot; /Y /I /E"
+              Condition="'$(Configuration)' == 'Release'" />
     </Target>
 </Project>
